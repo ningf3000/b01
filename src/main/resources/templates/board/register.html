@@ -39,8 +39,9 @@
 
                         <div class="my-4">
                             <div class="float-end">
+                                <button type="button" class="btn btn-secondary listBtn">List</button>
                                 <button type="submit" class="btn btn-primary submitBtn">Submit</button>
-                                <button type="reset" class="btn btn-secondary">Reset</button>
+                                <button type="reset" class="btn btn-danger">Reset</button>
                             </div>
                         </div>
                     </form>
@@ -124,6 +125,7 @@
         }
 
         uploadToServer(formObj).then(result => {
+            console.log(result)
             // console.log(result);
             for (const uploadResult of result) {
                 showUploadFile(uploadResult)
@@ -132,6 +134,13 @@
         }).catch(e => {
             uploadModal.hide()
         })
+    }, false)
+
+    document.querySelector(".listBtn").addEventListener("click", function (e) {
+        e.preventDefault()
+        e.stopPropagation()
+
+        self.location = `/board/list`
     }, false)
 
     const uploadResult = document.querySelector(".uploadResult")
